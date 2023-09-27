@@ -42,7 +42,6 @@ def mostrar_menu():
     print("2. Borrar D")
     print("3. modificar U")
     print("4. Leer R")
-    print("5. Leer fecha")
     print("6. Salir")
 
 def cargar_array1():
@@ -57,7 +56,6 @@ def cargar_array1():
             personas.append(p1)
 
 def crear():
-    print("Dentro de crear")
     dni=input("Introduce un dni: ")
     nombre=input("Introduce el nombre ")
     edad=input("Introduce la edad: ")
@@ -128,7 +126,7 @@ def borrar(personas):
 def seleccion():
     while True:
         mostrar_menu()
-        opc=input('Elige una opcion CRUD o salir(S)')
+        opc=input('Elige una opcion CRUD o salir(S)').lower()
         
         match opc:
             case 'c':
