@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #Wachin
+import re
 import fechas
 from datetime import datetime
 import json
@@ -57,9 +58,34 @@ def cargar_array1():
             personas.append(p1)
 
 def crear():
-    dni=input("Introduce un dni: ")
-    nombre=input("Introduce el nombre ")
-    edad=input("Introduce la edad: ")
+    patronDni=re.compile(r'\b\d{8}[a-zA-z]')
+    patronNombre=re.compile(r'\b[a-zA-Z]{2,}\b')
+    patronEdad=re.compile(r'^(?:[0-9]|[1-9][0-9])$')
+    while True:
+        dni=input("Introduce un dni: ")
+        if patronDni.match(dni):
+            print("Correcto")
+            break
+        else:
+            print("Fomato incorrecto, introduce 8 numeros y una letra")
+    
+    while True:
+        nombre=input("Introduce el nombre ")
+        if patronNombre.match(nombre):
+            print("Correcto")
+            break
+        else:
+            print("Formato incorrecto: dos o mas letras solo minusculas")
+    
+    while True:
+        edad=input("Introduce la edad: ")
+        if patronEdad.match(edad):
+            print("Correcto")
+            break
+        else:
+            print("Formato incorrecto: introduzca un numero de 0-99")
+
+    
     fechaNac=fechas.leerFechaValida()
     p1=Persona(dni,nombre,edad,fechaNac)
     personas.append(p1)
